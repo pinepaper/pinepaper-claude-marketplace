@@ -1,0 +1,8 @@
+{
+  "name": "pinepaper",
+  "description": "PinePaper Studio canvas animation Skill + MCP server. Lets Claude create animated text, status badges, animated logos, diagrams, generative backgrounds and export MP4/GIF/WebM/SVG/PDF.",
+  "version": "1.0.0",
+  "author": { "name": "PinePaper Studio", "url": "https://pinepaper.studio" },
+  "homepage": "https://pinepaper.studio/api/guides/skills",
+  "keywords": ["animation", "motion-graphics", "svg", "paper.js", "kinetic-typography", "mcp"]
+}

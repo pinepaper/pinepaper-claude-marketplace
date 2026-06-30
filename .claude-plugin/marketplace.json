@@ -1,0 +1,11 @@
+{
+  "name": "pinepaper-marketplace",
+  "owner": { "name": "PinePaper Studio", "url": "https://pinepaper.studio" },
+  "plugins": [
+    {
+      "name": "pinepaper",
+      "source": "./pinepaper",
+      "description": "Create animations, motion graphics, and vector micro-interactions with PinePaper Studio via natural language."
+    }
+  ]
+}

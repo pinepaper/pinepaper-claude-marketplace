@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "pinepaper": {
+      "command": "npx",
+      "args": ["-y", "@pinepaper.studio/mcp-server"]
+    }
+  }
+}

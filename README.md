@@ -12,12 +12,12 @@ PinePaper's design knowledge graph (the `pp:` ontology).
 
 **Claude Code (CLI):**
 ```
-/plugin marketplace add <github-owner>/<this-repo>
+/plugin marketplace add pinepaper/pinepaper-claude-marketplace
 /plugin install pinepaper
 ```
 
-**claude.ai (desktop):** Settings → Connectors → **Add marketplace** → paste this
-repo's URL, then install **pinepaper**.
+**claude.ai (desktop):** Settings → Connectors → **Add marketplace** → paste
+`https://github.com/pinepaper/pinepaper-claude-marketplace`, then install **pinepaper**.
 
 The plugin bundles an MCP connector (`.mcp.json` runs `npx -y @pinepaper.studio/mcp-server`)
 and the `pinepaper-studio` skill (procedural knowledge + the design-KG reference).

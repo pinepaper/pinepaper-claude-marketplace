@@ -10,3 +10,7 @@ Thumbs.db
 # Node (only if you add tooling later)
 node_modules/
 npm-debug.log*
+
+# Eval run results
+evals/results/
+pinepaper/evals/results/

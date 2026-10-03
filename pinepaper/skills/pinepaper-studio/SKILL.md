@@ -157,6 +157,7 @@ when editing an existing canvas).
   paths so each can animate independently), per the patterns in `references/console-api.md`.
 - **Generative background** → a generator (`drawSunburst`, `drawSunsetScene`, `drawGrid`, waves,
   circuit) behind the foreground content.
+- **Motion canvas scenes & intros/outros** → model as dynamic 2.5D vector motion canvas scenes (`pp:IntroScene`, `pp:OutroScene`, `pp:TransitionScene`, anchored to `schema:VisualArtwork`). Pair functional scene roles with background generators (`drawSunburst` / `drawGPUPlasma` for intros, `drawStackedWaves` / `drawRibbons` for transitions, `drawBokeh` / `drawPeaks` for outros). Override `generatorParams` for brand color palettes and timing while preserving the generic ontology.
 
 
 ## Animation contracts — avoid silent failures

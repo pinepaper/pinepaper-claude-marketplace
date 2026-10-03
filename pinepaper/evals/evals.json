@@ -1,0 +1,447 @@
+{
+  "skill_name": "pinepaper-studio",
+  "version": "1.1.0",
+  "description": "Evaluation suite for the PinePaper Studio Claude plugin based on R1–R13 reference briefs (2026-10-02/03)",
+  "evals": [
+    {
+      "id": "R1",
+      "brief": "a peaceful valley that turns into a data-centre wasteland, in watercolour",
+      "prompt": "a peaceful valley that turns into a data-centre wasteland, in watercolour",
+      "reference": "mp4/3-watercolor.mp4",
+      "category": "Style system & declarative scene spec",
+      "expected_output": {
+        "framework": "PinePaper Studio",
+        "medium": "watercolour",
+        "layers": ["sky", "ridges", "river", "structures", "vegetation", "datacenter"],
+        "transition": "continuous phase transition (dream -> cost)",
+        "export": { "format": "mp4", "duration": 8, "resolution": "1920x1080" }
+      },
+      "rubric": {
+        "triggers_pinepaper_plugin": "Must trigger pinepaper-studio skill / pinepaper MCP server rather than generic HTML/canvas/React.",
+        "uses_agent_batch_workflow": "Uses pinepaper_agent_start_job, single batch_execute, and pinepaper_agent_end_job.",
+        "declarative_scene_composition": "Separates scene composition (layers) from style module (watercolour glaze).",
+        "phase_curve_transition": "Uses continuous phase curves or dynamic scene transition rather than hard cut.",
+        "export_contract": "Exports to MP4 with loop:false to prevent frozen render."
+      },
+      "assertions": [
+        "triggers_pinepaper",
+        "has_watercolor_medium",
+        "models_valley_and_datacenter_layers",
+        "implements_scene_transition",
+        "targets_mp4_export"
+      ],
+      "required_capabilities": [
+        "pinepaper_agent_batch_execute",
+        "drawSunsetScene_or_organicFlow",
+        "pp:TransitionScene"
+      ]
+    },
+    {
+      "id": "R2",
+      "brief": "a little red ball bounces to life, rolls across a hand-drawn world, flies up to catch a star at night, and lands on a handwritten title card",
+      "prompt": "a little red ball bounces to life, rolls across a hand-drawn world, flies up to catch a star at night, and lands on a handwritten title card",
+      "reference": "ref2/reference-ball-journey.mp4",
+      "category": "Character acting & world draw-on",
+      "expected_output": {
+        "framework": "PinePaper Studio",
+        "character": "red ball with squash/stretch, eyes, contact shadow",
+        "world": "hand-drawn world with draw-on growth (trim-path)",
+        "transition": "day to glowing night with particles and star catch",
+        "end_card": "handwritten cursive title card written on",
+        "export": { "format": "mp4", "duration": 15, "fps": 60 }
+      },
+      "rubric": {
+        "character_acting": "Implements squash & stretch secondary deformation and facial expressions.",
+        "world_draw_on": "Uses trimEnd / draw-on keyframes for hand-drawn ground and world props.",
+        "night_transition": "Implements bloom, twinkling stars, and shooting star trail.",
+        "handwritten_type": "Title card written on with cursive text_style or typewriter.",
+        "timing_and_sound": "Choreographs sound effects and timing for bounces and impact hits."
+      },
+      "assertions": [
+        "triggers_pinepaper",
+        "character_acting_squash_stretch",
+        "draw_on_world_reveal",
+        "night_sky_particles_star",
+        "handwritten_title_card",
+        "targets_mp4_export"
+      ],
+      "required_capabilities": [
+        "pinepaper_deform_or_squash",
+        "apply_effect_sparkle_or_trail",
+        "text_typewriter_or_cursive"
+      ]
+    },
+    {
+      "id": "R3",
+      "brief": "our mascot flies through a museum wall of 10 art-history paintings, changing art style as it crosses into each frame, with gallery labels",
+      "prompt": "our mascot flies through a museum wall of 10 art-history paintings, changing art style as it crosses into each frame, with gallery labels",
+      "reference": "ref3/reference-3.mp4",
+      "category": "Card-edge masking & restyling",
+      "expected_output": {
+        "framework": "PinePaper Studio",
+        "character": "original mascot preserved across 10 paintings",
+        "masking": "card-edge rectangular masks (apply_mask)",
+        "restyling": "character restyled to match each historical medium",
+        "labels": "museum gallery label typography per painting",
+        "camera": "panning camera along wall (camera_follows or camera_animates)",
+        "export": { "format": "mp4", "duration": 40, "fps": 60 }
+      },
+      "rubric": {
+        "original_ip": "Uses original hero/mascot (no DC/Marvel trademarks).",
+        "card_edge_masking": "Card-edge masking clipping the flying character between frames.",
+        "medium_restyling": "Character visual language morphs to match each painting's medium.",
+        "camera_tracking": "Camera pans along the gallery wall.",
+        "gallery_typography": "Includes gallery plaques / typography under each artwork."
+      },
+      "assertions": [
+        "triggers_pinepaper",
+        "original_mascot_ip",
+        "card_edge_masking",
+        "character_restyled_per_art_style",
+        "camera_pan_or_tracking",
+        "museum_labels_present"
+      ],
+      "required_capabilities": [
+        "apply_mask",
+        "camera_animates_or_camera_follows",
+        "pp:Look_motif_kit"
+      ]
+    },
+    {
+      "id": "R4",
+      "brief": "a person sipping coffee on a stool stays perfectly still while the whole world around them changes art style every second — 12 styles, looping",
+      "prompt": "a person sipping coffee on a stool stays perfectly still while the whole world around them changes art style every second — 12 styles, looping",
+      "reference": "ref4/reference-4.mp4",
+      "category": "Locked subject across 12 motif kits",
+      "expected_output": {
+        "framework": "PinePaper Studio",
+        "subject": "locked pose: person on stool with coffee",
+        "styles": "12 distinct motif kits (props, framing device, native type, world)",
+        "timing": "1 second per style, seamless loop",
+        "export": { "format": "mp4", "duration": 12, "fps": 60, "loop": true }
+      },
+      "rubric": {
+        "locked_subject": "Keeps subject pose and position strictly locked.",
+        "motif_kits": "Each look includes world props, framing device, and native typography (not just a recolor).",
+        "style_count": "Includes at least 12 distinct art styles.",
+        "looping": "Authors seamless looping transition back to the opening sketch."
+      },
+      "assertions": [
+        "triggers_pinepaper",
+        "locked_subject_pose",
+        "twelve_distinct_looks",
+        "full_motif_kits_props_and_type",
+        "looping_timeline"
+      ],
+      "required_capabilities": [
+        "pp:Look_motif_kit",
+        "execute_generator_multiple",
+        "seamless_loop_authoring"
+      ]
+    },
+    {
+      "id": "R5",
+      "brief": "a 4×4 grid of art styles; a tiny climber hops tile to tile and is redrawn in each tile's style",
+      "prompt": "a 4×4 grid of art styles; a tiny climber hops tile to tile and is redrawn in each tile's style",
+      "reference": "ref5/reference-5.mp4",
+      "category": "Grid layout & travelling character",
+      "expected_output": {
+        "framework": "PinePaper Studio",
+        "layout": "4x4 grid of art styles",
+        "character": "small climber hopping tile to tile",
+        "restyling": "redrawn per tile art style",
+        "export": { "format": "mp4", "duration": 30 }
+      },
+      "rubric": {
+        "grid_structure": "Models a structured 4x4 grid with distinct visual styles.",
+        "locomotion": "Climber character path traverses across tiles with hopping motion.",
+        "dynamic_redrawing": "Climber inherits the medium/palette of the active tile."
+      },
+      "assertions": [
+        "triggers_pinepaper",
+        "four_by_four_grid_layout",
+        "climber_character_locomotion",
+        "per_tile_character_restyling"
+      ],
+      "required_capabilities": [
+        "drawGrid_or_structured_tiles",
+        "moves_along_path_or_locomotion",
+        "pp:Look_adaptation"
+      ]
+    },
+    {
+      "id": "R6",
+      "brief": "an interactive grid of 12 original superhero heads, each with one signature detail and a little animation; hover and keys trigger them, and they react to each other",
+      "prompt": "an interactive grid of 12 original superhero heads, each with one signature detail and a little animation; hover and keys trigger them, and they react to each other",
+      "reference": "ref6/reference-6.mp4",
+      "category": "Interactive character system / Widget",
+      "expected_output": {
+        "framework": "PinePaper Studio",
+        "system": "interactive widget with 12 superhero head variants on a common template",
+        "interactions": ["hover", "keyboard commands", "neighbor reactions"],
+        "export": { "format": "html", "interactive": true }
+      },
+      "rubric": {
+        "template_and_variants": "Creates a unified head template with 12 distinct signature variants.",
+        "micro_animations": "Assigns unique micro-animations to each character.",
+        "interactive_events": "Uses event bindings (pointer hover, keydown triggers).",
+        "neighbor_reactions": "Coordinates reactions across adjacent characters in the grid.",
+        "original_ip": "Original character designs avoiding trademarked IP."
+      },
+      "assertions": [
+        "triggers_pinepaper",
+        "twelve_superhero_head_variants",
+        "signature_micro_animations",
+        "interactive_event_listeners",
+        "reactive_neighbor_system",
+        "original_superhero_ip"
+      ],
+      "required_capabilities": [
+        "on_key_fire",
+        "on_pointer_enter_fire",
+        "repels_or_reactive_relations",
+        "export_html_widget"
+      ]
+    },
+    {
+      "id": "R7",
+      "brief": "a 15-second 3D motion-design reel for PinePaper in six chapters (impact, kinetic type, 3D form, velocity, a rippling cube field, logo sign-off) with a frame-counter HUD",
+      "prompt": "a 15-second 3D motion-design reel for PinePaper in six chapters (impact, kinetic type, 3D form, velocity, a rippling cube field, logo sign-off) with a frame-counter HUD",
+      "reference": "ref7/reference-7.mp4",
+      "category": "3D motion-design reel & HUD",
+      "expected_output": {
+        "framework": "PinePaper Studio",
+        "duration": 15,
+        "chapters": ["impact", "kinetic type", "3D form", "velocity", "cube field", "logo sign-off"],
+        "hud": "live timecode and frame counter",
+        "export": { "format": "mp4", "duration": 15, "fps": 60 }
+      },
+      "rubric": {
+        "chapter_structure": "Builds all six required chapters with clear sequencing.",
+        "three_d_and_form": "Uses 3D forms, extruded type, and cube field ripples.",
+        "hud_chrome": "Includes frame counter and timecode HUD overlay.",
+        "brand_signoff": "Ends on clean PinePaper wordmark / brand sign-off."
+      },
+      "assertions": [
+        "triggers_pinepaper",
+        "six_chapter_breakdown",
+        "three_d_parametric_or_extruded_forms",
+        "live_counter_or_frame_hud",
+        "pinepaper_logo_signoff",
+        "targets_mp4_export"
+      ],
+      "required_capabilities": [
+        "draw3DParametricCurve_or_3DWorld",
+        "text_dynamic_counter_or_timer",
+        "timeline_chapter_sequencing"
+      ]
+    },
+    {
+      "id": "R8",
+      "brief": "a 24-second square launch video for my app 'nightshift' — one continuous take inside the wordmark's period: ask it a job at night, glass UI does the work while the sky turns to dawn, morning shows the results on a phone, loops",
+      "prompt": "a 24-second square launch video for my app 'nightshift' — one continuous take inside the wordmark's period: ask it a job at night, glass UI does the work while the sky turns to dawn, morning shows the results on a phone, loops",
+      "reference": "ref8/reference-8.mp4",
+      "category": "Continuous-take glass UI launch",
+      "expected_output": {
+        "framework": "PinePaper Studio",
+        "form": "one continuous take inside the period glyph iris, zero cuts",
+        "materials": "iOS frosted glass (backdrop blur, rim tint, elevation shadows)",
+        "states": "pill -> grid -> composer -> orb -> pills -> phone lock screen -> chart -> CTA",
+        "relighting": "night photo relights to dawn",
+        "export": { "format": "mp4", "duration": 24, "preset": "instagram" }
+      },
+      "rubric": {
+        "continuous_take": "No cuts or crossfades; one element continuously morphs through states.",
+        "iris_period_mask": "Action takes place inside the period glyph mask reveal.",
+        "frosted_glass_craft": "Applies frosted glass styling (blurred backdrop, tint, rim highlight).",
+        "relighting": "Choreographs night to dawn lighting shift.",
+        "cursor_actor": "Uses an animated cursor actor to drive input interactions."
+      },
+      "assertions": [
+        "triggers_pinepaper",
+        "continuous_take_zero_cuts",
+        "period_glyph_mask_reveal",
+        "frosted_glass_ui_materials",
+        "day_night_lighting_transition",
+        "shape_morphing_sequence",
+        "square_instagram_preset"
+      ],
+      "required_capabilities": [
+        "apply_mask_iris",
+        "backdrop_blur_or_glass_material",
+        "morphs_to_or_shape_morph_table"
+      ]
+    },
+    {
+      "id": "R9",
+      "brief": "a tall rainbow-striped character walks across a world that paints itself in with big watercolour brush strokes on cream paper, then pulls on heart sunglasses — vertical, 30 s",
+      "prompt": "a tall rainbow-striped character walks across a world that paints itself in with big watercolour brush strokes on cream paper, then pulls on heart sunglasses — vertical, 30 s",
+      "reference": "ref9/reference-9.mp4",
+      "category": "Painted mediums on motion & character acting",
+      "expected_output": {
+        "framework": "PinePaper Studio",
+        "format": "vertical 9:16 (tiktok / instagram-story)",
+        "character": "tall teardrop rainbow character with walk cycle and facial acting",
+        "world": "watercolour brush-stroke reveal masks on cream paper ground",
+        "props": "pink heart sunglasses push-in climax",
+        "export": { "format": "mp4", "duration": 30, "preset": "tiktok" }
+      },
+      "rubric": {
+        "vertical_aspect": "Configures 9:16 vertical canvas preset (tiktok / instagram-story).",
+        "character_rigging": "Rigs character with independent limbs for walk cycle and facial expressions.",
+        "brush_reveal_masks": "Uses painterly brush masks that sweep in and out around the character.",
+        "painted_textures": "Applies watercolour textures on moving layers without flicker.",
+        "climax_prop": "Animates heart sunglasses onto character face at conclusion."
+      },
+      "assertions": [
+        "triggers_pinepaper",
+        "vertical_nine_sixteen_preset",
+        "character_walk_cycle_and_expressions",
+        "watercolor_brush_reveal_masks",
+        "heart_sunglasses_climax",
+        "targets_mp4_export"
+      ],
+      "required_capabilities": [
+        "canvasPreset_tiktok_or_instagram_story",
+        "apply_mask_reveals",
+        "drawOrganicFlow_or_watercolor_texture"
+      ]
+    },
+    {
+      "id": "R10",
+      "brief": "a 25-second square launch video for 'castr', UGC ads cast by AI: brief ticket, casting carousel with match scores, 4 ads by Friday, join-the-waitlist — op-art blue and cream brand",
+      "prompt": "a 25-second square launch video for 'castr', UGC ads cast by AI: brief ticket, casting carousel with match scores, 4 ads by Friday, join-the-waitlist — op-art blue and cream brand",
+      "reference": "ref10/reference-10.mp4",
+      "category": "Brand-system motion & collage",
+      "expected_output": {
+        "framework": "PinePaper Studio",
+        "branding": "op-art blue and cream palette, bold grotesk type, sunburst ground",
+        "beats": ["Brief #042 ticket with QR", "casting carousel with match % and stamps", "4 ads phone fan-out", "waitlist ticket & CTA"],
+        "export": { "format": "mp4", "duration": 25, "preset": "instagram" }
+      },
+      "rubric": {
+        "brand_system": "Consistent op-art blue/cream/orange palette and bold typography.",
+        "background_generator": "Uses sunburst generator (drawSunburst).",
+        "collage_props": "Creates sticker/ticket props with drop shadows (Brief ticket, QR, stamps).",
+        "carousel_motion": "Animates creator carousel with match cards and counter roll-up.",
+        "motivated_transitions": "Uses motivated transitions (fold, slide, wipe, fan-out)."
+      },
+      "assertions": [
+        "triggers_pinepaper",
+        "op_art_brand_system_palette",
+        "drawSunburst_background",
+        "ticket_and_stamp_collage_props",
+        "casting_carousel_with_match_scores",
+        "square_instagram_preset"
+      ],
+      "required_capabilities": [
+        "drawSunburst",
+        "canvasPreset_instagram",
+        "keyframe_animate_carousel"
+      ]
+    },
+    {
+      "id": "R11",
+      "brief": "a 24-second explainer for my AI ads app: read what wins, make more of it, then grow — light UI, one violet accent, a cut-out skateboarder mascot riding through the interface",
+      "prompt": "a 24-second explainer for my AI ads app: read what wins, make more of it, then grow — light UI, one violet accent, a cut-out skateboarder mascot riding through the interface",
+      "reference": "ref11/reference-11.mp4",
+      "category": "UI-as-stage & mascot physics",
+      "expected_output": {
+        "framework": "PinePaper Studio",
+        "design": "soft lilac/white gradient ground, light UI with violet accent",
+        "mascot": "skateboarder photo cut-out interacting with UI elements",
+        "narrative": ["Read what wins (CTR winner highlight)", "Make more of it (prompt typing + card slide)", "Then grow (chart build + KPI roll-up)"],
+        "export": { "format": "mp4", "duration": 24 }
+      },
+      "rubric": {
+        "ui_as_stage": "App interface animated as the physical stage.",
+        "cutout_mascot": "Skater cut-out mascot kickflips and lands on vector UI elements.",
+        "three_beat_structure": "Clear progression through 'Read what wins', 'Make more', and 'Grow'.",
+        "data_visualization": "Builds bar charts and KPI counter (1.67% -> 5.58%) synced to beats.",
+        "branding_finish": "Particle dissolve or cursive underline on sign-off."
+      },
+      "assertions": [
+        "triggers_pinepaper",
+        "ui_as_stage_composition",
+        "skater_mascot_ui_interaction",
+        "three_beat_narrative_flow",
+        "kpi_rollup_and_chart_build",
+        "targets_mp4_export"
+      ],
+      "required_capabilities": [
+        "drawGradientMesh_or_drawOrganicFlow",
+        "create_chart_or_bar_builds",
+        "text_dynamic_counter"
+      ]
+    },
+    {
+      "id": "R12",
+      "brief": "two flying travellers cross 30,000 years of history, each era drawn in its own period art style, with a year counter — 90 seconds",
+      "prompt": "two flying travellers cross 30,000 years of history, each era drawn in its own period art style, with a year counter — 90 seconds",
+      "reference": "ref12/reference-12.mp4",
+      "category": "Film-length historical epic & timeline chrome",
+      "expected_output": {
+        "framework": "PinePaper Studio",
+        "cast": "two flying travellers (towing pair) maintained across 15+ eras",
+        "styles": "cave painting, Egyptian frieze, Greek vase, mosaic, Tang ink, woodblock, pop art, modern vector",
+        "chrome": "year counter (-30000 to 2026), era name, medium caption, timeline scrubber",
+        "transitions": "diagonal light-sweep transitions between eras",
+        "export": { "format": "mp4", "duration": 90 }
+      },
+      "rubric": {
+        "cast_continuity": "Preserves the same two travelling characters redrawn in each era.",
+        "period_authenticity": "Features distinct, authentic period art styles across history.",
+        "timeline_chrome": "Includes year counter and era medium captions.",
+        "era_transitions": "Applies diagonal sweep or motif transitions between eras.",
+        "extended_duration": "Authors 90-second timeline without freezing (loop:false)."
+      },
+      "assertions": [
+        "triggers_pinepaper",
+        "two_flying_travellers_cast",
+        "multiple_period_art_styles",
+        "year_counter_and_timeline_chrome",
+        "diagonal_sweep_transitions",
+        "film_length_90s_mp4"
+      ],
+      "required_capabilities": [
+        "pp:Look_period_media",
+        "text_dynamic_counter",
+        "apply_mask_diagonalWipe"
+      ]
+    },
+    {
+      "id": "R13",
+      "brief": "a 90-second comedy of three original cartoon mascots living through a decade of internet meme formats, one per year",
+      "prompt": "a 90-second comedy of three original cartoon mascots living through a decade of internet meme formats, one per year",
+      "reference": "ref13/reference-13.mp4",
+      "category": "Character comedy & format parody",
+      "expected_output": {
+        "framework": "PinePaper Studio",
+        "cast": "three original cartoon mascots (muscular big brother, smaller sibling, blob friend)",
+        "formats": "10 yearly meme genres (rage comic, pixel art, dance loop, news ticker, Zoom grid, Wordle board, poster)",
+        "comedy": "comic timing, acting expressions, punchline structure, synced sound hits",
+        "export": { "format": "mp4", "duration": 90 }
+      },
+      "rubric": {
+        "original_cast": "Three original cartoon mascots kept on-model throughout.",
+        "meme_genre_restyling": "Restyles scene to each meme format as a cultural genre.",
+        "comic_timing": "Choreographs comedic beats, expressions, and punchlines.",
+        "synced_sfx": "Incorporates synced sound effects on gag hits.",
+        "ip_compliance": "Avoids trademarked model names or proprietary marks."
+      },
+      "assertions": [
+        "triggers_pinepaper",
+        "three_original_cartoon_characters",
+        "yearly_meme_format_genres",
+        "comic_acting_and_timing",
+        "sound_effects_choreography",
+        "original_ip_compliance"
+      ],
+      "required_capabilities": [
+        "character_expressions_and_acting",
+        "pp:Look_genre_adaptation",
+        "synced_to_audio_or_sfx"
+      ]
+    }
+  ]
+}
